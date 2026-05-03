@@ -81,24 +81,33 @@
             background-color: #333;
             color: #fff;
         }
-    </style>
-</head>
-<body>
-
-    <!-- 1. 自定義游標 -->
-    <div id="custom-cursor" class="fixed w-4 h-4 bg-zinc-800 rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-300 ease-out -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
-
-    <!-- 2. 導覽列 -->
-    <nav class="flex justify-between items-center px-10 py-8 fixed w-full top-0 z-50 bg-[#f8f8f8]/80 backdrop-blur-md">
-        <div class="font-bold tracking-[0.4em] text-lg">CBDC_STUDIO</div>
-        <div class="hidden md:flex space-x-10 text-[10px] tracking-[0.3em] uppercase">
-            <a href="#" class="hover:opacity-40 transition-opacity">Philosophy</a>
-            <a href="#" class="hover:opacity-40 transition-opacity">Projects</a>
-            <a href="#" class="hover:opacity-40 transition-opacity">Contact</a>
+ <!-- 3. Hero Section -->
+    <section class="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden">
+        
+        <!-- 右上角圖片 (維持原本) -->
+        <div class="absolute top-[18%] right-[8%] w-[25vw] md:w-[20vw] reveal active delay-500 hidden md:block">
+            <img src="https://res.cloudinary.com/do3p1vjeh/image/upload/v1756364696/main-sample.png" 
+                 class="w-full grayscale opacity-40 floating" alt="Deco Top Right">
         </div>
-    </nav>
 
-  <!-- 3. Hero Section -->
+        <!-- 左下角圖片 (你新增的部分：加上延遲與響應式隱藏) -->
+        <div class="absolute bottom-[18%] left-[8%] w-[28vw] md:w-[22vw] reveal active delay-700 hidden md:block">
+            <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85" 
+                 class="w-full grayscale opacity-40 floating" 
+                 alt="Deco Bottom Left" 
+                 style="animation-delay: -3s;"> <!-- 負值延遲讓動畫立即開始且不同步 -->
+        </div>
+
+        <!-- 中央標題 (提升 z-index) -->
+        <div class="relative z-20 text-center px-10">
+            <h1 class="reveal active text-4xl md:text-7xl font-extralight uppercase tracking-[0.4em] mb-6">
+                Design <br class="md:hidden"> Perspectives
+            </h1>
+            <p class="reveal active delay-200 text-[10px] tracking-[0.4em] text-zinc-400 uppercase">
+                Creative Studio Based in Tokyo & Taipei
+            </p>
+        </div>
+    </section>
     <section class="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden">
         <!-- 右上角圖片 (原本的) -->
         <div class="absolute top-[15%] right-[10%] w-[20vw] reveal active delay-500">
