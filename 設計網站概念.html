@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBDC STUDIO | Official Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Noto Sans JP', sans-serif; 
+            background-color: #f8f8f8; 
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* 跑馬燈核心動畫 */
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            width: max-content;
+            animation: scrollMarquee 50s linear infinite;
+        }
+
+        .marquee-wrapper-reverse {
+            display: flex;
+            width: max-content;
+            animation: scrollMarquee 50s linear infinite reverse;
+        }
+
+        .marquee-section:hover .marquee-wrapper,
+        .marquee-section:hover .marquee-wrapper-reverse {
+            animation-play-state: paused;
+        }
+
+        /* 圖片卡片樣式 */
+        .img-card {
+            height: 28vw;
+            object-fit: cover;
+            flex-shrink: 0;
+            background-color: #eee;
+            transition: filter 0.8s ease, transform 0.5s ease;
+        }
+        .img-card:hover { transform: scale(1.02); }
+
+        /* 基礎滾動進場效果 (滑上來效果) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px); 
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero 漂浮動畫 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
+
+        /* 按鈕樣式 */
+        .btn-view-more {
+            display: inline-block;
+            border: 1px solid #333;
+            padding: 12px 45px;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        .btn-view-more:hover {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 自定義游標 -->
+    <div id="custom-cursor" class="fixed w-4 h-4 bg-zinc-800 rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-300 ease-out -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
+
+    <!-- 2. 導覽列 -->
+    <nav class="flex justify-between items-center px-10 py-8 fixed w-full top-0 z-50 bg-[#f8f8f8]/80 backdrop-blur-md">
+        <div class="font-bold tracking-[0.4em] text-lg">CBDC_STUDIO</div>
+        <div class="hidden md:flex space-x-10 text-[10px] tracking-[0.3em] uppercase">
+            <a href="#" class="hover:opacity-40 transition-opacity">Philosophy</a>
+            <a href="#" class="hover:opacity-40 transition-opacity">Projects</a>
+            <a href="#" class="hover:opacity-40 transition-opacity">Contact</a>
+        </div>
+    </nav>
+
+    <!-- 3. Hero Section -->
+    <section class="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden">
+        <div class="absolute top-[15%] right-[10%] w-[20vw] reveal active delay-500">
+            <img src="https://res.cloudinary.com/do3p1vjeh/image/upload/v1756364696/main-sample.png" class="w-full grayscale opacity-60 floating" alt="Deco">
+        </div>
+        <div class="relative z-10 text-center">
+            <h1 class="reveal active text-4xl md:text-7xl font-extralight uppercase tracking-[0.4em] mb-6">
+                Design <br class="md:hidden"> Perspectives
+            </h1>
+            <p class="reveal active delay-200 text-[10px] tracking-[0.4em] text-zinc-400 uppercase">
+                Creative Studio Based in Tokyo & Taipei
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. OEM 區塊 -->
+    <section class="relative py-40 overflow-hidden bg-white">
+        <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
+            <span id="parallax-text" class="text-[30vw] font-bold text-zinc-100/80 leading-none select-none tracking-tighter uppercase">OEM</span>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-10 text-center">
+            <h2 class="reveal text-2xl md:text-4xl font-bold mb-16 tracking-[0.1em]">「企画」「デザイン」「商品作り」</h2>
+            <div class="space-y-6 text-sm md:text-base tracking-[0.15em] leading-[2.5] text-zinc-600">
+                <p class="reveal">從生活雜貨到品牌視覺，擁有超過 25 年的實務經驗。</p>
+                <p class="reveal delay-200">CB DESIGN CREATIVE 專注於細節的打磨。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 服務介紹區塊 (OUR SERVICE) -->
+    <section class="bg-white py-40 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-10">
+            
+            <div class="text-center mb-32 reveal">
+                <h2 class="text-4xl font-bold tracking-[0.2em] uppercase">Our Service</h2>
+            </div>
+
+            <!-- Service 1: Brand Design (image_59d71d.jpg 風格) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center mb-48">
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324" class="w-full grayscale hover:grayscale-0 transition-all duration-700" alt="Brand Design">
+                </div>
+                <div class="reveal delay-300">
+                    <h3 class="text-2xl font-bold mb-6 tracking-wide">Brand Design</h3>
+                    <p class="text-xs md:text-sm leading-[2.5] tracking-[0.15em] text-zinc-500">
+                        ブランドセオリーやターゲット・商品・店頭分析を行い、売れるブランド・商品作りのお手伝いを行います。<br>
+                        ブランドセオリー / ターゲット・商品・店舗分析 / コンセプトシート作成
+                    </p>
+                    <a href="#" class="btn-view-more">VIEW MORE</a>
+                </div>
+            </div>
+
+            <!-- Service 2: Product Design (image_59d6a1.png 風格 - 左右反轉) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center mb-48">
+                <div class="reveal md:order-2">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7" class="w-full grayscale hover:grayscale-0 transition-all duration-700" alt="Product Design">
+                </div>
+                <div class="reveal delay-300 md:order-1 text-left md:text-right">
+                    <h3 class="text-2xl font-bold mb-6 tracking-wide">Product Design</h3>
+                    <p class="text-xs md:text-sm leading-[2.5] tracking-[0.15em] text-zinc-500">
+                        商品の形状やカラーの提案から、3D・図面作成など商品についての様々な提案を行います。<br>
+                        プロダクトデザイン / 設計 / 図面作成 / カラー提案
+                    </p>
+                    <a href="#" class="btn-view-more">VIEW MORE</a>
+                </div>
+            </div>
+
+            <!-- Service 3: Logo Design (image_59d31e.png 風格) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="w-full grayscale hover:grayscale-0 transition-all duration-700" alt="Logo Design">
+                </div>
+                <div class="reveal delay-300">
+                    <h3 class="text-2xl font-bold mb-6 tracking-wide">Logo Design</h3>
+                    <p class="text-xs md:text-sm leading-[2.5] tracking-[0.15em] text-zinc-500">
+                        ブランドストーリーにあったブランド・商品ロゴの開発を行います。<br>
+                        ブランドロゴ作成 / 商品ロゴ作成
+                    </p>
+                    <a href="#" class="btn-view-more">VIEW MORE</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<!-- 7. Works Section (產品展示區) -->
+<section class="bg-[#f8f8f8] py-32 px-10">
+    <div class="max-w-7xl mx-auto">
+        <!-- 標題與分類選單 -->
+        <div class="mb-16 reveal">
+            <h2 class="text-4xl font-bold mb-8 tracking-tight">Works</h2>
+            <div class="flex flex-wrap gap-6 text-[10px] tracking-[0.2em] uppercase text-zinc-400">
+                <a href="#" class="text-zinc-900 font-bold border-b border-zinc-900 pb-1">All</a>
+                <a href="#" class="hover:text-zinc-900 transition-colors">Brand Design</a>
+                <a href="#" class="hover:text-zinc-900 transition-colors">Product Design</a>
+                <a href="#" class="hover:text-zinc-900 transition-colors">Photography & Movie</a>
+                <a href="#" class="hover:text-zinc-900 transition-colors">Logo Design</a>
+                <a href="#" class="hover:text-zinc-900 transition-colors">Graphic Design</a>
+            </div>
+        </div>
+
+        <!-- 產品網格 (6個卡片) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            
+            <!-- 卡片 1 (以此類推複製 6 個) -->
+            <div class="reveal group">
+                <div class="relative aspect-square overflow-hidden rounded-sm bg-zinc-200 mb-4">
+                    <!-- 自動換圖容器 -->
+                    <div class="slideshow-container w-full h-full relative">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="slide-img active w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e" class="slide-img w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-[11px] font-bold tracking-wider uppercase mb-1">SANTECO アニポール ミニボトル 150ml</h4>
+                        <p class="text-[9px] text-zinc-400 tracking-widest uppercase">Product Design</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 2 -->
+            <div class="reveal delay-100 group">
+                <div class="relative aspect-square overflow-hidden rounded-sm bg-zinc-200 mb-4">
+                    <div class="slideshow-container w-full h-full relative">
+                        <img src="https://images.unsplash.com/photo-1544350282-84246ec93bb5" class="slide-img active w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7" class="slide-img w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-[11px] font-bold tracking-wider uppercase mb-1">dsk.pig 薄型弁当箱 抗菌 フードマン 700</h4>
+                        <p class="text-[9px] text-zinc-400 tracking-widest uppercase">Product Design</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 3 (示範重複 6 個，這裡先列出 3 個) -->
+ <!-- 卡片 1 (以此類推複製 6 個) -->
+            <div class="reveal group">
+                <div class="relative aspect-square overflow-hidden rounded-sm bg-zinc-200 mb-4">
+                    <!-- 自動換圖容器 -->
+                    <div class="slideshow-container w-full h-full relative">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="slide-img active w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e" class="slide-img w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-[11px] font-bold tracking-wider uppercase mb-1">SANTECO アニポール ミニボトル 150ml</h4>
+                        <p class="text-[9px] text-zinc-400 tracking-widest uppercase">Product Design</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 2 -->
+            <div class="reveal delay-100 group">
+                <div class="relative aspect-square overflow-hidden rounded-sm bg-zinc-200 mb-4">
+                    <div class="slideshow-container w-full h-full relative">
+                        <img src="https://images.unsplash.com/photo-1544350282-84246ec93bb5" class="slide-img active w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7" class="slide-img w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-[11px] font-bold tracking-wider uppercase mb-1">dsk.pig 薄型弁当箱 抗菌 フードマン 700</h4>
+                        <p class="text-[9px] text-zinc-400 tracking-widest uppercase">Product Design</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 你可以根據需要自行複製更多個 .group 區塊 -->
+            <div class="reveal delay-200 group">
+                <div class="relative aspect-square overflow-hidden rounded-sm bg-zinc-200 mb-4">
+                    <div class="slideshow-container w-full h-full relative">
+                        <img src="https://images.unsplash.com/photo-1594913785162-e6786b42dea3" class="slide-img active w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324" class="slide-img w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-[11px] font-bold tracking-wider uppercase mb-1">Creative Branding Case Study</h4>
+                        <p class="text-[9px] text-zinc-400 tracking-widest uppercase">Brand Design</p>
+                    </div>
+                </div>
+            </div>
+
+         <!-- 卡片 +1 -->
+            <div class="reveal delay-100 group">
+                <div class="relative aspect-square overflow-hidden rounded-sm bg-zinc-200 mb-4">
+                    <div class="slideshow-container w-full h-full relative">
+                        <img src="https://images.unsplash.com/photo-1544350282-84246ec93bb5" class="slide-img active w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7" class="slide-img w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-[11px] font-bold tracking-wider uppercase mb-1">dsk.pig 薄型弁当箱 抗菌 フードマン 700</h4>
+                        <p class="text-[9px] text-zinc-400 tracking-widest uppercase">Product Design</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- (請重複上述結構補滿至 6 個) -->
+
+        </div>
+    </div>
+
+<!-- Works 下方的 More 按鈕 (實心灰色版) -->
+<div class="mt-24 text-center reveal">
+    <a href="#" class="group inline-block relative bg-[#D9D9D9] px-16 py-10 transition-all duration-300 hover:bg-[#CCCCCC]">
+        <div class="relative flex flex-col items-center">
+            <!-- 襯線體文字 -->
+            <span class="text-3xl md:text-4xl font-serif tracking-[0.8em] lowercase text-zinc-900 ml-[0.8em]">
+                more
+            </span>
+            <!-- 緊貼文字的裝飾底線 -->
+            <div class="w-full h-[1.5px] bg-zinc-900 mt-2 origin-center transition-transform duration-500 group-hover:scale-x-110"></div>
+        </div>
+    </a>
+</div></section>
+
+<style>
+    /* 自動換圖相關 CSS */
+    .slide-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+    .slide-img.active {
+        opacity: 1;
+    }
+</style>
+
+<script>
+    // 0.4秒自動換圖邏輯
+   // 優化後的自動換圖邏輯：加入隨機偏移量
+function startSlideshow() {
+    const containers = document.querySelectorAll('.slideshow-container');
+    
+    containers.forEach((container, index) => {
+        const imgs = container.querySelectorAll('.slide-img');
+        let currentIndex = 0;
+
+        // 為每個卡片設定一個隨機的「首次啟動延遲」 (0ms ~ 400ms 之間)
+        // 這樣可以打散所有圖片的切換節奏
+        const randomOffset = Math.random() * 400;
+
+        setTimeout(() => {
+            setInterval(() => {
+                imgs[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % imgs.length;
+                imgs[currentIndex].classList.add('active');
+            }, 1600); // 維持你要求的 0.4 秒換片頻率
+        }, randomOffset);
+    });
+}
+
+window.addEventListener('load', startSlideshow);
+</script>
+
+
+
+
+
+
+    <!-- 6. 照片牆跑馬燈 (兩排回歸) -->
+    <section class="marquee-section py-20 bg-white space-y-4">
+        
+        <!-- 第一排：向左 -->
+        <div class="overflow-hidden flex">
+            <div class="marquee-wrapper">
+                <div class="flex gap-4 pr-4">
+                    <img src="https://images.unsplash.com/photo-1544350282-84246ec93bb5" class="w-[35vw] img-card grayscale hover:grayscale-0">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7" class="w-[45vw] img-card grayscale hover:grayscale-0">
+                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85" class="w-[25vw] img-card grayscale hover:grayscale-0">
+                </div>
+                <!-- 複製品確保無縫 -->
+                <div class="flex gap-4 pr-4">
+                    <img src="https://images.unsplash.com/photo-1544350282-84246ec93bb5" class="w-[35vw] img-card grayscale hover:grayscale-0">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7" class="w-[45vw] img-card grayscale hover:grayscale-0">
+                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85" class="w-[25vw] img-card grayscale hover:grayscale-0">
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二排：向右 (Reverse) -->
+        <div class="overflow-hidden flex">
+            <div class="marquee-wrapper-reverse">
+                <div class="flex gap-4 pr-4">
+                    <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324" class="w-[30vw] img-card grayscale hover:grayscale-0">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="w-[40vw] img-card grayscale hover:grayscale-0">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="w-[50vw] img-card grayscale hover:grayscale-0">
+                </div>
+                <!-- 複製品確保無縫 -->
+                <div class="flex gap-4 pr-4">
+                    <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324" class="w-[30vw] img-card grayscale hover:grayscale-0">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="w-[40vw] img-card grayscale hover:grayscale-0">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="w-[50vw] img-card grayscale hover:grayscale-0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-zinc-200 text-center">
+        <p class="text-[9px] tracking-[0.5em] text-zinc-400 uppercase">© 2026 CBDC STUDIO</p>
+    </footer>
+
+    <script>
+        // 游標邏輯
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // 滾動觀察器 (進場動畫)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // 視差效果
+        const parallaxText = document.getElementById('parallax-text');
+        window.addEventListener('scroll', () => {
+            let scrollValue = window.scrollY;
+            parallaxText.style.transform = `translateX(${scrollValue * 0.08}px)`;
+        });
+    </script>
+</body>
+</html>
